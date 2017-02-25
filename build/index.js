@@ -63,10 +63,20 @@ const addClickListener = (element) => {
   }
 }
 
-document.addEventListener("DOMContentLoaded", function(event) { 
+// chrome.tabs.onUpdated.addListener( function (tabId, changeInfo, tab) {
+//     console.log('hello_world')
+//     elements = document.querySelectorAll("a[href^='mailto']")
+//     elements.forEach(element => {
+//       addClickListener(element);
+//     })
+// })
+
+console.log('is this working at least?')
+
+// document.addEventListener("DOMContentLoaded", function(event) {
   console.log('hello_world')
   elements = document.querySelectorAll("a[href^='mailto']")
   elements.forEach(element => {
     addClickListener(element);
   })
-});
+// });
