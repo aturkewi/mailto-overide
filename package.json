@@ -1,0 +1,13 @@
+{
+  "name": "mailto-overide",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node node_modules/webpack/bin/webpack.js index.js build/build.js --watch"
+  },
+  "dependencies": {
+    "domready": "^1.0.8"
+  },
+  "devDependencies": {
+    "webpack": "^2.2.1"
+  }
+}

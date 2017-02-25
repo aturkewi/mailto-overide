@@ -1,0 +1,16 @@
+{
+  "manifest_version": 2,
+
+  "name": "MailTo Overide",
+  "description": "This extension overides the html mailto and copys the email to your clipboard",
+  "version": "1.0",
+
+  "browser_action": {
+    "default_icon": "mail-to.png",
+    "default_popup": "popup.html"
+  },
+  "permissions": [
+    "activeTab",
+    "https://ajax.googleapis.com/"
+  ]
+}
