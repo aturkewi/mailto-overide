@@ -42,7 +42,28 @@ const addClickListener = (element) => {
   }
 }
 
-elements = document.querySelectorAll("a[href^='mailto']")
-elements.forEach(element => {
-  addClickListener(element);
-})
+const removeAllListeners = () =>{
+  while(listeners.length > 0){
+    let element = listeners.pop();
+    element.onclick = () => {false}
+  }
+}
+
+const listeners = [];
+
+const findAllMailTos = () => {
+  elements = document.querySelectorAll("a[href^='mailto']")
+  elements.forEach(element => {
+    listeners.push(element);
+    addClickListener(element);
+  })
+}
+
+const myMutationObserver = new MutationObserver(mutations => {
+  removeAllListeners();
+  findAllMailTos();
+});
+
+const config = { attributes: true, childList: true, characterData: true };
+
+myMutationObserver.observe(document.body, config);
