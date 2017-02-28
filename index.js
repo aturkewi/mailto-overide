@@ -34,36 +34,16 @@ function copyTextToClipboard(text) {
   document.body.removeChild(textArea);
 }
 
-const addClickListener = (element) => {
+const listenForMailtos = () => {
+  element = document.querySelector('body');
   element.onclick = (event) => {
-    event.preventDefault();
-    const emailAddress = event.target.href.slice(7).split("?")[0]
-    copyTextToClipboard(emailAddress);
+    const element = event.target
+    if (element.matches("a[href^='mailto']")){
+      event.preventDefault();
+      const emailAddress = element.href.slice(7).split("?")[0];
+      copyTextToClipboard(emailAddress);
+    }
   }
 }
 
-const removeAllListeners = () =>{
-  while(listeners.length > 0){
-    let element = listeners.pop();
-    element.onclick = () => {false}
-  }
-}
-
-const listeners = [];
-
-const findAllMailTos = () => {
-  elements = document.querySelectorAll("a[href^='mailto']")
-  elements.forEach(element => {
-    listeners.push(element);
-    addClickListener(element);
-  })
-}
-
-const myMutationObserver = new MutationObserver(mutations => {
-  removeAllListeners();
-  findAllMailTos();
-});
-
-const config = { attributes: true, childList: true, characterData: true };
-
-myMutationObserver.observe(document.body, config);
+listenForMailtos();
