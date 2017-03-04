@@ -34,13 +34,24 @@ function copyTextToClipboard(text) {
   document.body.removeChild(textArea);
 }
 
+const findMailto = (element) => {
+  if (element.matches("a[href^='mailto']")){
+    return element
+  }else if (element.nodeName == 'BODY'){
+    return false
+  }else{
+    return findMailto(element.parentElement)
+  }
+}
+
 const listenForMailtos = () => {
-  element = document.querySelector('body');
-  element.onclick = (event) => {
-    const element = event.target
-    if (element.matches("a[href^='mailto']")){
+  const bodyElement = document.querySelector('body');
+  bodyElement.onclick = (event) => {
+    const initialElement = event.target
+    const mailtoLink = findMailto(initialElement);
+    if (mailtoLink){
       event.preventDefault();
-      const emailAddress = element.href.slice(7).split("?")[0];
+      const emailAddress = mailtoLink.href.slice(7).split("?")[0];
       copyTextToClipboard(emailAddress);
     }
   }
