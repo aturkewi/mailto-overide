@@ -1,0 +1,23 @@
+{
+  "name": "mailto-overide",
+  "version": "1.0.0",
+  "description": "Chrome extension to overide mailto: syntax in HTML and copy email to clipboard instead",
+  "main": "index.js",
+  "config": {
+    "version": "node -p require('./manifest').version"
+  },
+  "scripts": {
+    "build-release": "zip ./releases/emailto-clipboard-v${npm_package_config_version}.zip index.js manifest.json popup.html tooltip.css email-to-clipboard-logo.png",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aturkewi/mailto-overide.git"
+  },
+  "author": "Avidor Turkewitz",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aturkewi/mailto-overide/issues"
+  },
+  "homepage": "https://github.com/aturkewi/mailto-overide#readme"
+}
