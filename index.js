@@ -44,6 +44,18 @@ const findMailto = (element) => {
   }
 }
 
+const addTooltip = (linkElement, emailAddress) => {
+  const newSpan = `<span class='emailto-clipboard-tooltiptext'>${emailAddress} copied to clipboard!</span>`;
+  const originalClassName = linkElement.className;
+  const originalInnderHTML = linkElement.innerHTML;
+  linkElement.className = originalClassName + " emailto-clipboard-tooltip";
+  linkElement.innerHTML = originalInnderHTML + newSpan;
+  setTimeout(()=>{
+    linkElement.innerHTML = originalInnderHTML;
+    linkElement.className = originalClassName;
+  }, 4000)
+}
+
 const listenForMailtos = () => {
   const bodyElement = document.querySelector('body');
   bodyElement.onclick = (event) => {
@@ -52,6 +64,7 @@ const listenForMailtos = () => {
     if (mailtoLink){
       event.preventDefault();
       const emailAddress = mailtoLink.href.slice(7).split("?")[0];
+      addTooltip(mailtoLink, emailAddress);
       copyTextToClipboard(emailAddress);
     }
   }
